@@ -23,28 +23,26 @@ st.header("📽️ Live App Demonstration – Recorded Video")
 st.markdown(
     """
     **Description:**  
-    This video is a recorded demonstration showing how the full web application
-    (`app.py`) works on the local machine.  
-    It covers all three object tracking methods:
+    This video is a recorded demonstration showing how the full Streamlit web application
+    (`app.py`) works on a local machine, covering all three object tracking methods:
 
     - ArUco Marker Tracking  
     - KLT (Markerless) Tracking  
     - SAM2 Segmentation-Based Tracking  
 
-    The demo shows:
-    - The Streamlit interface  
-    - How each tab launches the correct tracker  
-    - What users should expect when running the application  
-    - Real-time behavior of each tracking method  
+    The recording shows:
+    - The Streamlit interface layout  
+    - How each tab launches a real-time tracker  
+    - How OpenCV windows are used for visualization  
+    - Expected behavior during tracking  
 
-    This video is included so that instructors and reviewers can see the
-    application's behavior even if OpenCV windows cannot run in cloud
-    environments.
+    This is included so that instructors and reviewers can see the application's
+    behavior even though OpenCV GUI windows cannot run on cloud environments like Streamlit Cloud.
     """
 )
 
-# Direct Google Drive streaming link
-VIDEO_URL = "https://drive.google.com/uc?export=download&id=1S0txJPjGtpwschn70bVAH6P2FpvjzNDs"
+# ✅ Working GitHub Releases streaming URL
+VIDEO_URL = "https://github.com/dasjar/csc8830-cv-assignment5/releases/download/demo/klt_demo_output.mp4"
 
 st.video(VIDEO_URL)
 
@@ -53,14 +51,12 @@ st.write("---")
 st.markdown(
     """
     ### 📌 Notes
-    - The full real-time tracking system is implemented locally.
-    - Cloud environments cannot render OpenCV GUI windows, so this recording
-      serves as the official live demonstration.
-    - For full interaction, run `app.py` locally using:
+    - The real-time tracking is fully implemented locally.
+    - Cloud environments cannot render OpenCV GUI windows, so this video serves as the official live demo.
+    - To run the full application locally, execute:
 
       ```
       streamlit run app/app.py
       ```
-
     """
 )
