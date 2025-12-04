@@ -1,12 +1,7 @@
 import streamlit as st
-import os
-
-# ============================================
-# Page Config
-# ============================================
 
 st.set_page_config(
-    page_title="Assignment 5 – Tracking Demonstration Videos",
+    page_title="Assignment 5 – Demo Video",
     layout="wide"
 )
 
@@ -14,7 +9,7 @@ st.markdown(
     """
     <div style="text-align:center; padding: 10px 0 25px 0;">
         <h1 style="font-size:40px; margin-bottom:5px;">CSc 8830 – Assignment 5</h1>
-        <h3 style="margin-top:0;">Demonstration Videos for ArUco, KLT, and SAM2 Tracking</h3>
+        <h3 style="margin-top:0;">Demonstration Video of Object Tracking Web App</h3>
         <p style="color:#888; font-size:16px;">Georgia State University • Computer Vision • Fall 2025</p>
     </div>
     """,
@@ -23,101 +18,49 @@ st.markdown(
 
 st.write("---")
 
-DEMO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "demo_videos"))
+st.header("📽️ Live App Demonstration – Recorded Video")
 
+st.markdown(
+    """
+    **Description:**  
+    This video is a recorded demonstration showing how the full web application
+    (`app.py`) works on the local machine.  
+    It covers all three object tracking methods:
 
-# ============================================
-# Utility: Load a video safely
-# ============================================
+    - ArUco Marker Tracking  
+    - KLT (Markerless) Tracking  
+    - SAM2 Segmentation-Based Tracking  
 
-def load_video(filename):
-    path = os.path.join(DEMO_DIR, filename)
-    if not os.path.exists(path):
-        st.warning(f"Video not found: {filename}")
-        return None
-    return path
+    The demo shows:
+    - The Streamlit interface  
+    - How each tab launches the correct tracker  
+    - What users should expect when running the application  
+    - Real-time behavior of each tracking method  
 
+    This video is included so that instructors and reviewers can see the
+    application's behavior even if OpenCV windows cannot run in cloud
+    environments.
+    """
+)
 
-# ============================================
-# Tabs
-# ============================================
+# Direct Google Drive streaming link
+VIDEO_URL = "https://drive.google.com/uc?export=download&id=1S0txJPjGtpwschn70bVAH6P2FpvjzNDs"
 
-tab1, tab2, tab3 = st.tabs([
-    "ArUco Marker Tracking Demo",
-    "KLT (Markerless) Tracking Demo",
-    "SAM2-Based Tracking Demo"
-])
+st.video(VIDEO_URL)
 
-# ============================================
-# TAB 1 — ARUCO DEMO
-# ============================================
+st.write("---")
 
-with tab1:
-    st.header("ArUco Marker-Based Tracking – Demonstration")
+st.markdown(
+    """
+    ### 📌 Notes
+    - The full real-time tracking system is implemented locally.
+    - Cloud environments cannot render OpenCV GUI windows, so this recording
+      serves as the official live demonstration.
+    - For full interaction, run `app.py` locally using:
 
-    st.markdown(
-        """
-        **What this video shows:**  
-        - Detection of a **4×4 ArUco marker** placed on the object  
-        - Automatic detection of marker ID  
-        - Tracking of marker corners  
-        - Overlay of bounding box + marker center  
-        - Real-time orientation correction  
+      ```
+      streamlit run app/app.py
+      ```
 
-        This demonstration corresponds to **Part (ii).1** of the assignment.
-        """
-    )
-
-    video_path = load_video("aruco_demo_output.mp4")
-    if video_path:
-        st.video(video_path)
-
-
-# ============================================
-# TAB 2 — KLT TRACKING DEMO
-# ============================================
-
-with tab2:
-    st.header("Lucas–Kanade (Markerless) Tracking – Demonstration")
-
-    st.markdown(
-        """
-        **What this video shows:**  
-        - User selecting an ROI around the object  
-        - Extraction and tracking of feature points  
-        - Red bounding box updated dynamically  
-        - Crash-proof tracking across frames  
-        - Demonstration of markerless motion estimation  
-
-        This corresponds to **Part (ii).2** of the assignment.
-        """
-    )
-
-    video_path = load_video("klt_demo_output.mp4")
-    if video_path:
-        st.video(video_path)
-
-
-# ============================================
-# TAB 3 — SAM2 SEGMENTATION DEMO
-# ============================================
-
-with tab3:
-    st.header("SAM2-Based Segmentation Tracking – Demonstration")
-
-    st.markdown(
-        """
-        **What this video shows:**  
-        - Precomputed segmentation masks applied frame-by-frame  
-        - Dynamic bounding box overlay  
-        - Mask visualization on top of the object  
-        - Real-time tracking simulation using segmentation output  
-
-        This corresponds to **Part (ii).3** of the assignment, where  
-        **SAM2 segmentation is used to track the object**.
-        """
-    )
-
-    video_path = load_video("sam2_demo_output.mp4")
-    if video_path:
-        st.video(video_path)
+    """
+)
